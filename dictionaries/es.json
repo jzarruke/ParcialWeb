@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "title": "Parcial 1 Web",
+    "description": "Preparcial de internacionalización con Next.js"
+  },
+  "home": {
+    "welcome": "Bienvenido",
+    "description": "Esta es una aplicación de ejemplo para probar la internacionalización con Next.js.",
+    "switchLanguage": "Cambiar idioma"
+  }
+}

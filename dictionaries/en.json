@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "title": "Midterm 1 Web",
+    "description": "Internationalization pre-midterm with Next.js"
+  },
+  "home": {
+    "welcome": "Welcome",
+    "description": "This is a sample application to test internationalization with Next.js.",
+    "switchLanguage": "Switch language"
+  }
+}
