@@ -1,11 +1,10 @@
 {
-  "metadata": {
-    "title": "Parcial 1 Web",
-    "description": "Preparcial de internacionalización con Next.js"
+  "metadataList": {
+    "title": "Listado de razas - PawsomeAdviceApp",
+    "description": "Descubre todas las razas de perro acompañadas de un consejo de vida aleatorio: una colección pensada para alegrar tu día."
   },
-  "home": {
-    "welcome": "Bienvenido",
-    "description": "Esta es una aplicación de ejemplo para probar la internacionalización con Next.js.",
-    "switchLanguage": "Cambiar idioma"
+  "metadataDetail": {
+    "title": "Bienvenido",
+    "description": "Consulta una nueva foto de esta raza junto con un consejo de vida aleatorio, y genera otra combinación cuando quieras."
   }
 }

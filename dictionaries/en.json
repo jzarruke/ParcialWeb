@@ -1,11 +1,10 @@
 {
-  "metadata": {
-    "title": "Midterm 1 Web",
-    "description": "Internationalization pre-midterm with Next.js"
+  "metadataList": {
+    "title": "Dog Breeds List - PawsomeAdviceApp",
+    "description": "Discover all dog breeds accompanied by a random life advice: a collection designed to brighten your day."
   },
-  "home": {
-    "welcome": "Welcome",
-    "description": "This is a sample application to test internationalization with Next.js.",
-    "switchLanguage": "Switch language"
+  "metadataDetail": {
+    "title": "Welcome",
+    "description": "Check out a new photo of this breed along with a random life advice, and generate another combination whenever you want."
   }
 }
