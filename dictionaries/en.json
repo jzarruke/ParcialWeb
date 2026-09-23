@@ -4,7 +4,19 @@
     "description": "Discover all dog breeds accompanied by a random life advice: a collection designed to brighten your day."
   },
   "metadataDetail": {
-    "title": "Welcome",
+    "title": "{breed} Detail - PawsomeAdviceApp",
     "description": "Check out a new photo of this breed along with a random life advice, and generate another combination whenever you want."
+  },
+  "home": {
+    "title": "Breed list",
+    "random": "Random"
+  },
+  "detail": {
+    "random": "Random",
+    "back": "Back to the list"
+  },
+  "footer": {
+    "rights": "\u00a9 2026 Pawsome Advice. All rights reserved.",
+    "credits": "Images provided by Dog CEO API and advice by Advice Slip API."
   }
 }

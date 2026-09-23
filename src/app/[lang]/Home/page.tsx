@@ -1,47 +1,47 @@
-'use client';
-import {useState, useEffect} from "react";
-import Image from "next/image";
+import { fetchDogBreeds, fetchDogImage } from "@/lib/dogs";
+import { getDictionary, type Locale } from "@/app/[lang]/dictionaries";
+import RandomButton from "@/components/RandomButton";
+import BreedCard from "@/components/BreedCard";
 
-function fetchDogBreeds() {
-    return fetch("https://dog.ceo/api/breeds/list/all")
-        .then((response) => response.json())
-        .then((data) => Object.keys(data.message));
+type Props = {
+  params: Promise<{ lang: string }>;
+};
+
+export async function generateMetadata({ params }: Props) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+  return {
+    title: dict.metadataList.title,
+    description: dict.metadataList.description,
+  };
 }
 
-function fetchDogImage(breed: string) {
-  return fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
-    .then((response) => response.json())
-    .then((data) => data.message);
-}
+export default async function HomePage({ params }: Props) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
 
-export default function HomePage() {
-    const [breeds, setBreeds] = useState<string[]>([]);
-    const [dogImages, setDogImages] = useState<string[]>([]);
+  const allBreeds = await fetchDogBreeds();
+  const breeds = allBreeds.slice(0, 15);
 
-  useEffect(() => {
-    fetchDogBreeds().then((data) => setBreeds(data));
-  }, []);
+  const dogs = await Promise.all(
+    breeds.map(async (breed) => ({
+      breed,
+      image: await fetchDogImage(breed),
+    }))
+  );
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <h1 className="text-4xl font-bold mb-4">Listado de razas</h1>
-        
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {breeds.map((breed) => {
-                fetchDogImage(breed).then((imageUrl) => {
-                    console.log(`Fetched image for breed ${breed}: ${imageUrl}`);
-                    setDogImages((prevImages) => [...prevImages, imageUrl]);
-                })
-                dogImages.forEach((imageUrl, index) => {
-                    console.log(`Dog image at index ${index}: ${imageUrl}`);
-                });
-                return (
-                <div key={breed} className="bg-white text-black p-4 rounded-lg shadow-md">
-                    
-                    <p className="capitalize">{breed}</p>
-                </div>
-            )})}
-        </div>
+    <div className="flex flex-col items-center justify-center py-2">
+      <div className="flex w-full max-w-5xl items-center justify-between px-4 mb-4">
+        <h1 className="text-4xl font-bold">{dict.home.title}</h1>
+        <RandomButton breeds={allBreeds} lang={lang} label={dict.home.random} />
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
+        {dogs.map(({ breed, image }) => (
+          <BreedCard key={breed} breed={breed} image={image} lang={lang} />
+        ))}
+      </div>
     </div>
   );
 }

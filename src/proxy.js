@@ -32,16 +32,27 @@ export function proxy(request) {
   const currentLocale = locales.find(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
+
   if (currentLocale) {
-    // La URL ya trae idioma: solo actualizamos la cookie con esa preferencia
+    // La URL ya trae idioma, pero es la raiz del locale (sin subruta): mandamos a /home
+    if (pathname === `/${currentLocale}` || pathname === `/${currentLocale}/`) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/${currentLocale}/home`;
+      const response = NextResponse.redirect(url);
+      response.cookies.set(localeCookieName, currentLocale, { path: '/' });
+      return response;
+    }
+    // La URL ya trae idioma y subruta: solo actualizamos la cookie con esa preferencia
     const response = NextResponse.next();
     response.cookies.set(localeCookieName, currentLocale, { path: '/' });
     return response;
   }
-  // No hay idioma en la URL: se detecta y se redirige
+
+  // No hay idioma en la URL: se detecta y se redirige (directo a /home si era la raiz)
   const locale = getLocale(request);
-  request.nextUrl.pathname = `/${locale}${pathname}`;
-  const response = NextResponse.redirect(request.nextUrl);
+  const url = request.nextUrl.clone();
+  url.pathname = pathname === '/' ? `/${locale}/home` : `/${locale}${pathname}`;
+  const response = NextResponse.redirect(url);
   response.cookies.set(localeCookieName, locale, { path: '/' });
   return response;
 }

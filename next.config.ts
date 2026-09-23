@@ -5,9 +5,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "dog.ceo",
-        port: "",
-        pathname: "/api/breeds/**/images/randoms",
+        hostname: "images.dog.ceo",
+        pathname: "/breeds/**",
       },
     ],
   },

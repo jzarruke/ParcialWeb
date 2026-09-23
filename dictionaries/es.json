@@ -1,10 +1,22 @@
 {
   "metadataList": {
     "title": "Listado de razas - PawsomeAdviceApp",
-    "description": "Descubre todas las razas de perro acompañadas de un consejo de vida aleatorio: una colección pensada para alegrar tu día."
+    "description": "Descubre todas las razas de perro acompañadas de un consejo de vida aleatorio: una coleccion pensada para alegrar tu dia."
   },
   "metadataDetail": {
-    "title": "Bienvenido",
-    "description": "Consulta una nueva foto de esta raza junto con un consejo de vida aleatorio, y genera otra combinación cuando quieras."
+    "title": "Detalle de {breed} - PawsomeAdviceApp",
+    "description": "Consulta una nueva foto de esta raza junto con un consejo de vida aleatorio, y genera otra combinacion cuando quieras."
+  },
+  "home": {
+    "title": "Listado de razas",
+    "random": "Random"
+  },
+  "detail": {
+    "random": "Random",
+    "back": "Volver al listado"
+  },
+  "footer": {
+    "rights": "\u00a9 2026 Pawsome Advice. Todos los derechos reservados.",
+    "credits": "Las imagenes son proporcionadas por Dog CEO API y los consejos por Advice Slip API."
   }
 }
